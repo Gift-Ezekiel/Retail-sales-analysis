@@ -1,0 +1,57 @@
+# Data Cleaning Documentation
+
+## 1. Overview
+
+The raw retail sales dataset was reviewed and cleaned in Microsoft Excel before being imported into MySQL for further analysis.
+
+The purpose of the cleaning process was to identify data quality issues, correct inconsistencies, handle missing values appropriately, and prepare the dataset for reliable analysis.
+
+All cleaning activities were documented, including the issues identified, methods used, actions taken, and outcomes.
+
+## 2. Data Quality Issues and Cleaning Log
+
+| Issue | How It Was Found | Action Taken | Outcome |
+|---|---|---|---|
+| Duplicate rows | Reviewed the dataset for duplicate records. | Used Remove Duplicates across all columns. | Removed 150 exact duplicates, leaving 9,802 rows. |
+| Inconsistent date formats | Identified left-aligned dates and mixed date styles. | Imported dates as text and converted them using a formula that handles both formats. | All dates were converted into real date values. |
+| Inconsistent payment method values | Filtered the payment method column to identify inconsistent entries. | Applied TRIM and PROPER, followed by Find and Replace to correct variants. | Approximately 112 rows were corrected, resulting in 5 consistent payment method values. |
+| Missing payment methods | Filtered the payment method column for blanks. | Replaced blank values with "Null". | Records were retained, and missing information remained identifiable. |
+| Negative and extreme quantities | Sorted and filtered the quantity column. | Corrected negative values and recalculated extreme values using sales and list price. | Quantity values were corrected and reviewed in a second pass. |
+| Missing discount values | Filtered the discount column for blanks. | Left missing values blank rather than replacing them with zero. | Unknown discount values remained identifiable and were preserved as NULL in MySQL. |
+| Inconsistent decimal formatting | Visually inspected sales, profit, and discount values. | Rounded and formatted values consistently. | Improved numerical presentation without changing the underlying data. |
+| Missing helper fields | Identified additional fields needed for the planned analysis. | Added order_year, order_month, and shipping_days. | Dataset prepared for time-based analysis. |
+
+## 3. Important Cleaning Decisions
+
+The following decisions guided the cleaning process:
+
+- **Duplicate removal:** All columns were considered when identifying exact duplicate records because order IDs legitimately repeat for orders containing multiple product lines.
+- **Missing payment methods:** Blank payment method values were replaced with "Null" rather than deleting the affected records.
+- **Missing discounts:** Blank discount values were preserved instead of being replaced with zero, since an unknown discount does not necessarily mean that no discount was applied.
+- **Date standardisation:** Mixed date formats were converted into consistent date values to support accurate time-based analysis.
+- **Numerical consistency:** Decimal formatting was standardised for readability without treating formatting differences as data errors.
+
+## 4. Additional Fields Created
+
+Three additional fields were created to support further analysis:
+
+| Field | Description | Purpose |
+|---|---|---|
+| order_year | Year extracted from order_date. | Annual sales analysis. |
+| order_month | Month extracted from order_date. | Monthly sales trend analysis. |
+| shipping_days | Number of days between order_date and ship_date. | Shipping performance analysis. |
+
+## 5. Data Cleaning Principles
+
+The following principles were followed throughout the cleaning process:
+
+1. **Preserve the original data:** All cleaning activities were performed on a copy of the original dataset. The raw file remained untouched.
+2. **Avoid assumptions:** Unknown values were either clearly labelled or left blank rather than replaced with assumed values.
+3. **Document changes:** Cleaning activities were logged, including the number of rows affected where available.
+4. **Maintain data integrity:** Records were retained wherever possible instead of deleting information unnecessarily.
+
+## 6. Final Outcome
+
+After the cleaning process, 9,802 records remained in the dataset.
+
+The dataset was standardised, reviewed, and prepared for further exploration and analysis using MySQL and Microsoft Excel.
