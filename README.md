@@ -82,7 +82,7 @@ Retail-Sales-Analysis/
 │   └── Project_Overview.md
 │
 ├── SQL/
-│   └── Retail_SalesAnalysis.sql
+│   └── Retail_Sales.sql
 │
 ├── images/
 │   └── Retail_sales_analysis_dashboard.png
