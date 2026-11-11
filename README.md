@@ -2,6 +2,10 @@
 
 An end-to-end retail sales analysis covering two years of sales data (2024–2025). This project focuses on data cleaning, SQL analysis, business insights, and interactive dashboard development using Excel and MySQL.
 
+## Dashboard Preview
+
+![Retail Sales Dashboard](images/Retail_sales_analysis_dashboard.png)
+
 ## Project Overview
 
 A retail chain operating 8 stores across 4 regions needed to understand its sales performance, profitability, customer behavior, and discount impact.
@@ -80,9 +84,11 @@ Retail-Sales-Analysis/
 ├── SQL/
 │   └── Retail_SalesAnalysis.sql
 │
+├── images/
+│   └── Retail_sales_analysis_dashboard.png
+│
 └── README.md
 ```
-
 
 ## Contact
 
